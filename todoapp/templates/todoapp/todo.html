@@ -11,10 +11,11 @@
   
               <h4 class="text-center my-3 pb-3">To Do App</h4>
   
-              <form method="#" class="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2">
+              <form method="POST" class="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2">
+                {% csrf_token %}
                 <div class="col-12">
                   <div class="form-outline">
-                    <input type="text" id="form1" class="form-control" required placeholder="Enter a task here"/>
+                    <input type="text" id="form1" class="form-control" name="task" required placeholder="Enter a task here"/>
                   </div>
                 </div>
   
@@ -33,34 +34,23 @@
                   </tr>
                 </thead>
                 <tbody>
+                  {% for i in todos %}
                   <tr>
                     <th scope="row">1</th>
-                    <td>Buy groceries for next week</td>
-                    <td>In progress</td>
+                    <td>{{i.todo_name}}</td>
+                    {% if i.status == True %}
+                      <td>Completed</td>
+                    {% else %}
+                      <td>In progress</td>
+                    {% endif %}
+
                     <td>
                       <button type="submit" class="btn btn-danger">Delete</button>
                       <button type="submit" class="btn btn-success ms-1">Finished</button>
                     </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Renew car insurance</td>
-                    <td>In progress</td>
-                    <td>
-                      <button type="submit" class="btn btn-danger">Delete</button>
-                      <button type="submit" class="btn btn-success ms-1">Finished</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Sign up for online course</td>
-                    <td>In progress</td>
-                    <td>
-                      <button type="submit" class="btn btn-danger">Delete</button>
-                      <button type="submit" class="btn btn-success ms-1">Finished</button>
-                    </td>
-                  </tr>
                 </tbody>
+                  </tr>
+                  {% endfor %}
               </table>
   
             </div>
