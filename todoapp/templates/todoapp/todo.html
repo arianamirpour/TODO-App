@@ -23,7 +23,7 @@
                   <button type="submit" class="btn btn-primary">Add Task</button>
                 </div>
               </form>
-  
+              <a href="{% url 'logout' %}"><button style="background: firebrick; color: white;" type="submit" class="btn btn-primary">Logout</button></a>
               <table class="table mb-4">
                 <thead>
                   <tr>
@@ -45,8 +45,8 @@
                     {% endif %}
 
                     <td>
-                      <button type="submit" class="btn btn-danger">Delete</button>
-                      <button type="submit" class="btn btn-success ms-1">Finished</button>
+                      <a href="{% url 'delete' i.todo_name %}"><button type="submit" class="btn btn-danger">Delete</button></a>
+                      <a href="{% url 'update' i.todo_name %}"><button type="submit" class="btn btn-success ms-1">Finished</button></a>
                     </td>
                 </tbody>
                   </tr>
